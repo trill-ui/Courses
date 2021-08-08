@@ -36,4 +36,14 @@ public interface RoleService {
     * 删除角色
     * */
     public void deleteRole(Integer roleId);
+
+    /*
+     * 添加角色
+     * */
+    public void saveRole(Role role);
+
+    /*
+     * 更新角色
+     * */
+    public void updateRole(Role role);
 }

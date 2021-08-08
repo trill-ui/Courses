@@ -24,6 +24,7 @@ public class PromotionAdController {
 
     @Autowired
     private PromotionAdService promotionAdService;
+    public static final String LOCAL_URL  = "http://localhost:8080";
 
     /*
     * 广告分页查询

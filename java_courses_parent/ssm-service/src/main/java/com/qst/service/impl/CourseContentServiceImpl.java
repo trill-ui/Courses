@@ -73,4 +73,11 @@ public class CourseContentServiceImpl implements CourseContentService {
         courseContentMapper.saveLesson(courseLesson);
 
     }
+
+    @Override
+    public void updateLesson(CourseLesson courseLesson) {
+        //补全信息
+        courseLesson.setUpdateTime(new Date());
+        courseContentMapper.updateLesson(courseLesson);
+    }
 }

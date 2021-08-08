@@ -28,6 +28,7 @@ public class CourseController {
 
     @RequestMapping("/findCourseByCondition")
     public ResponseResult findCourseByCondition(@RequestBody CourseVO courseVO){
+        System.out.println(courseVO.getStatus());
         //调用service
         List<Course> list = courseService.findCourseByCondition(courseVO);
         ResponseResult responseResult = new ResponseResult(true, 200, "响应成功", list);

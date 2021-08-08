@@ -34,4 +34,42 @@
     <delete id="deleteRole" parameterType="int">
         delete from roles where id =#{roleId}
     </delete>
+
+    <insert id="saveRole" parameterType="role">
+        insert into roles values (null,#{code},#{name},#{description},#{createdTime},#{updatedTime},#{createdBy},#{updatedBy})
+    </insert>
+
+    <!--更新角色-->
+    <update id="updateRole" parameterType="role">
+          update roles
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="code != null and code != ''">
+                code = #{code},
+            </if>
+
+            <if test="name != null and name != ''">
+                name=#{name},
+            </if>
+            <if test="description != null and description != ''">
+                description=#{description},
+            </if>
+
+            <if test="updatedTime != null">
+                updated_time=#{updatedTime},
+            </if>
+
+            <if test="createdBy != null and createdBy != ''">
+                created_by=#{createdBy},
+            </if>
+
+            <if test="updatedBy != null and updatedBy != ''">
+                updated_by=#{updatedBy},
+            </if>
+
+        </trim>
+
+        <where>
+            <if test="id!=null and id != '' ">id=#{id}</if>
+        </where>
+    </update>
 </mapper>

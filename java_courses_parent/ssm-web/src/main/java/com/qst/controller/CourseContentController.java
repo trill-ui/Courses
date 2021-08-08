@@ -83,12 +83,20 @@ public class CourseContentController {
     /*
     * 新增课时信息
     * */
-    @RequestMapping("/saveLesson")
-    public ResponseResult saveLesson(@RequestBody CourseLesson courseLesson){
+    @RequestMapping("/saveOrUpdateLesson")
+    public ResponseResult saveOrUpdateLesson(@RequestBody CourseLesson courseLesson){
 
-        courseContentService.saveLesson(courseLesson);
+        if(courseLesson.getId()== null){
+            courseContentService.saveLesson(courseLesson);
 
-        ResponseResult result = new ResponseResult(true,200,"新增课时信息成功",null);
-        return result;
+            ResponseResult result = new ResponseResult(true,200,"新增课时信息成功",null);
+            return result;
+        } else{
+            courseContentService.updateLesson(courseLesson);
+
+            ResponseResult result = new ResponseResult(true,200,"修改课时信息成功",null);
+            return result;
+        }
+
     }
 }

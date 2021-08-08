@@ -27,4 +27,25 @@ public class ResourceController {
         ResponseResult result = new ResponseResult(true,200,"多条件查询和分页成功",pageInfo);
         return result;
     }
+
+    @RequestMapping("/saveOrUpdateResource")
+    public ResponseResult saveOrUpdateResource(@RequestBody Resource resource){
+        if(resource.getId() == null){
+            resourceService.saveResource(resource);
+            return new ResponseResult(true,200,"添加资源成功",null);
+        }else {
+            resourceService.updateResource(resource);
+            return new ResponseResult(true,200,"修改资源成功",null);
+        }
+
+    }
+
+    /*
+    * 删除资源
+    * */
+    @RequestMapping("/deleteResource")
+    public ResponseResult deleteResource(int id){
+        resourceService.deleteResource(id);
+        return new ResponseResult(true,200,"删除资源成功",null);
+    }
 }

@@ -22,4 +22,18 @@ public interface MenuMapper {
     * 根据id查询菜单信息
     * */
     public Menu findMenuById(Integer id);
+    /*
+    * 添加菜单
+    * */
+    public void saveMenu(Menu menu);
+
+    /*
+    * 修改菜单
+    * */
+    public void updateMenu(Menu menu);
+
+    /*
+    * 删除菜单
+    * */
+    public void deleteMenu(int id);
 }

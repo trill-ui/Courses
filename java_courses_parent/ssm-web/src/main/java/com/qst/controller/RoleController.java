@@ -6,6 +6,7 @@ import com.qst.domain.Role;
 import com.qst.domain.RoleMenuVO;
 import com.qst.service.MenuService;
 import com.qst.service.RoleService;
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -91,5 +92,20 @@ public class RoleController {
         ResponseResult result = new ResponseResult(true,200,"删除角色成功",null);
         return result;
 
+    }
+
+    /*
+    * 添加或修改角色  post请求 id name  code descirption
+    * */
+    @RequestMapping("/saveOrUpdateRole")
+    public ResponseResult saveOrUpdateRole(@RequestBody Role role){
+
+        if(role.getId() == null){
+            roleService.saveRole(role);
+            return new ResponseResult(true,200,"添加角色成功",null);
+        } else{
+            roleService.updateRole(role);
+            return new ResponseResult(true,200,"修改角色成功",null);
+        }
     }
 }

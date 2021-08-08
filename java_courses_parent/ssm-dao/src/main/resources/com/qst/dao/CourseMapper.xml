@@ -6,18 +6,21 @@
 
     <!--多条件课程列表查询 public List<Course> findCourseByCondition(CourseVO courseVO); -->
     <!--/*is_del表示没有被删除的数据*/-->
+    <!--在Mybatis中，我们经常使用if标签来判断一个对象是否为null或者是否为""。
+今天，我发现了当用if标签判断Integer是否不为null且不为""空的时候，当数据传入0时，if标签会自动判别为null-->
     <select id="findCourseByCondition" parameterType="com.qst.domain.CourseVO" resultType="course">
         select * from course
         <where>
+            <if test="status != null and status !='' or status == 0">
+                and status = #{status}
+            </if>
             <if test="true">
                 and is_del != 1
             </if>
             <if test="courseName != null and courseName !=''">
                 and course_name like concat('%',#{courseName},'%')
             </if>
-            <if test="status != null and status !=''">
-                and status = #{status}
-            </if>
+
         </where>
     </select>
 

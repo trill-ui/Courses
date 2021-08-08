@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setId(id);
         user.setStatus(status);
-        user.setUpdate_time(new Date());
+        user.setUpdateTime(new Date());
 
         //调用dao层
         userMapper.updateUserStatus(user);

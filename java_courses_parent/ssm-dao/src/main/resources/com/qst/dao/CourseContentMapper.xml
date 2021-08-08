@@ -112,4 +112,32 @@
         status)VALUES(#{courseId},#{sectionId},#{theme},#{duration},#{isFree},#{createTime},#{updateTime},
         #{isDel},#{orderNum},#{status})
     </insert>
+
+    <!--更新课时信息 public void updateLesson(CourseLesson courseLesson);-->
+    <update id="updateLesson" parameterType="courseLesson">
+      UPDATE course_lesson
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="theme != null and theme != ''">
+                theme = #{theme},
+            </if>
+
+            <if test="duration != null and duration != ''">
+                duration = #{duration},
+            </if>
+
+            <if test="orderNum != null and orderNum != '' or orderNum == 0">
+                order_num = #{orderNum},
+            </if>
+
+            <if test="isFree != null">
+                is_free=#{isFree},
+            </if>
+            <if test="updateTime != null">
+                update_time=#{updateTime},
+            </if>
+        </trim>
+        <where>
+            <if test="id != null and id != '' ">id = #{id}</if>
+        </where>
+    </update>
 </mapper>
